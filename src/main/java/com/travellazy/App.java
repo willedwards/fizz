@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class App {
-    private ReplacementLogic replacementLogic;
+    private final ReplacementLogic replacementLogic;
 
     public App(final List<Replacement> replacements) {
         replacementLogic  = new ReplacementLogic(replacements);
@@ -14,11 +14,13 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App(Arrays.asList(
+                new LuckyReplacement('3', "luck"),
                 new DefaultReplacement(15, "fizzbuzz"),
                 new DefaultReplacement(3, "fizz"),
-                new DefaultReplacement(5, "buzz")));
+                new DefaultReplacement(5, "buzz")
+        ));
 
-        System.out.println(app.applyForRange(1, 20));
+        System.out.println(app.applyForRangeWithStats(1, 20));
     }
 
     public String applyForRange(int start, int end) {
