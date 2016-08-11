@@ -20,10 +20,30 @@ public class ReplacementLogic {
 
             if(replacement.isReplaceable(givenNumber)) {
                 value = replacement.getReplacementFor(givenNumber);
+                replacement.incrementCounter();
                 break;
             }
+
         }
 
         return value;
+    }
+
+    public String getStats(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        for(Replacement replacement : replacementList) {
+            sb.append(replacement.getStats()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public int totalReplacedCount(){
+        int total = 0;
+        for(Replacement replacement : replacementList) {
+            total += replacement.getCount();
+        }
+        return total;
     }
 }
